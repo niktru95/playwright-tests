@@ -5,14 +5,12 @@ export class SauceDemoPage {
   readonly login_form: Locator;
   readonly pass_form: Locator;
   readonly login_button: Locator;
-//   readonly products_title: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.login_form = page.getByPlaceholder('Username');
     this.pass_form = page.getByPlaceholder('Password');
     this.login_button = page.getByRole('button', {name: "Login"});
-    // this.products_title = page.getByText('Products');
   }
 
   async goto() {
