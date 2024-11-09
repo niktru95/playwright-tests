@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { inventoryPage } from '../pages/inventory_page';
+import * as allure from "allure-js-commons";
 
 test.beforeEach('Авторизация', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
@@ -9,12 +10,22 @@ test.beforeEach('Авторизация', async ({ page }) => {
     await expect(page.getByText('Products')).toBeVisible();
 })
 
-test('В карточке товара содержится название, описание, цена, кнопка добавления в корзину', async ({ page }) => {
-    await expect(page
-        .getByText('carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.'))
-        .toBeVisible();
-    await expect(page.getByText('$29.99')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Add to cart' })
+test('Проверка наличия данных в карточке товара', async ({ page }) => {
+    await allure.displayName("Проверка наличия данных в карточке");
+    
+    await allure.step('В карточке товара отображается описание', async => {
+            expect(page
+            .getByText('carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.'))
+            .toBeVisible();
+    })
+
+    await allure.step('В карточке товара отображается цена', async => {
+        expect(page.getByText('$29.99')).toBeVisible();
+    })
+
+    await allure.step('В карточке товара отображается кнопка "Добавить в корзину"', async => {
+        expect(page.getByRole('button', { name: 'Add to cart' })
         .first())
         .toBeVisible();
+    })
 })
