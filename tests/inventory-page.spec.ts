@@ -14,5 +14,7 @@ test('В карточке товара содержится название, о
         .getByText('carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.'))
         .toBeVisible();
     await expect(page.getByText('$29.99')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Add to cart' }).first()).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Add to cart' })
+        .first())
+        .toBeVisible();
 })

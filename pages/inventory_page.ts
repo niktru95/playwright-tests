@@ -12,4 +12,5 @@ export class inventoryPage {
     async click_link_product() {
         await this.product_name.click();
     }
+    
 }
