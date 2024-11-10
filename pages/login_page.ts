@@ -22,7 +22,7 @@ export class SauceDemoPage {
     await this.pass_form.fill(pass);
   }
 
-  async loginButton() {
+  async click_login_button() {
     await this.login_button.click();
   }
 }
