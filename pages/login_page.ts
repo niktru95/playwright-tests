@@ -13,10 +13,6 @@ export class SauceDemoPage {
     this.login_button = page.getByRole('button', {name: "Login"});
   }
 
-  async goto() {
-    await this.page.goto('https://www.saucedemo.com/');
-  }
-
   async auth(login: string, pass: string) {
     await this.login_form.fill(login);
     await this.pass_form.fill(pass);
