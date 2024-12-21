@@ -24,7 +24,7 @@ test('Удаление продукта из корзины', async ({page}) => 
         await cart_page.click_shop_cart_link();
     })
 
-    await allure.step('Открывается страницы корзины', async () => {
+    await allure.step('Открывается страница корзины', async () => {
         await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
     })
 
@@ -32,7 +32,7 @@ test('Удаление продукта из корзины', async ({page}) => 
         await expect(page.getByTestId('item-quantity')).toHaveText('1');
     })
 
-    await allure.step('Кликнуть на кнопку Remove', async () => {
+    await allure.step('Кликнуть на кнопку Remove (удалить)', async () => {
         await cart_page.click_remove_button();
     })
 

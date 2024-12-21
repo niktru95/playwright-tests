@@ -3,7 +3,6 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/allure-results
 /PW.practice/.auth
 ### macOS ###
 # General
