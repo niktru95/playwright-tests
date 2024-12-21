@@ -7,12 +7,11 @@ test.beforeEach('Переход на страницу проекта', async ({ 
   await page.goto('https://www.saucedemo.com/');
 })
 
+
 test('После авторизации должен быть совершен переход на страницу товаров', async ({ page }) => {
   await allure.displayName('Ввод корректных данных для входа');
 
   const saucedemopage = new SauceDemoPage(page);
-
-  await allure.displayName('Ввод корректных данных для входа');
 
   await allure.step('Ввести данные пользователя', async () => {
     await saucedemopage.auth('standard_user', 'secret_sauce');

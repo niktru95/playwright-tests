@@ -4,7 +4,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /allure-results
-
+/PW.practice/.auth
 ### macOS ###
 # General
 .DS_Store

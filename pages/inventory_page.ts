@@ -5,7 +5,7 @@ export class inventoryPage {
     readonly link_back_to_products: Locator;
 
     constructor(page: Page) {
-        this.link_back_to_products = page.locator('[data-test="item-4-title-link"]');
+        this.link_back_to_products = page.getByTestId('inventory-item-name').first();
     }
     
     async click_link_back_to_products() {
