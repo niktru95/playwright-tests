@@ -10,7 +10,7 @@ export class inventoryPage {
         this.burger_menu = page.getByRole('button', { name: 'Open Menu' });
     }
     
-    async click_link_back_to_products() {
+    async clickLinkBackToProducts() {
         await this.link_back_to_products.click();
     }
 }

@@ -1,6 +1,5 @@
 import {Locator, type Page} from "@playwright/test";
 
-
 export class logoutPage {
     readonly page: Page;
     readonly burger: Locator;
@@ -11,11 +10,11 @@ export class logoutPage {
         this.logout_button = page.getByTestId('logout-sidebar-link');
     }
 
-    async click_burger_menu () {
+    async clickBurgerMenu () {
         await this.burger.click();
     }
 
-    async click_logout_button () {
+    async clickLogoutButton () {
         await this.logout_button.click();
     }
 }

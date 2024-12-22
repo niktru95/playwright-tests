@@ -17,11 +17,11 @@ test('Удаление продукта из корзины', async ({page}) => 
     const cart_page = new cartPage(page);
 
     await allure.step('Добавить продукт в корзину', async () => {
-        await cart_page.click_add_to_cart_button();
+        await cart_page.clickAddToCartButton();
     })
 
     await allure.step('Перейти на страницу проверки заказа', async () => {
-        await cart_page.click_shop_cart_link();
+        await cart_page.clickShopCartLink();
     })
 
     await allure.step('Открывается страница корзины', async () => {
@@ -33,7 +33,7 @@ test('Удаление продукта из корзины', async ({page}) => 
     })
 
     await allure.step('Кликнуть на кнопку Remove (удалить)', async () => {
-        await cart_page.click_remove_button();
+        await cart_page.clickRemoveButton();
     })
 
     await allure.step('Товар удален из корзины', async () => {

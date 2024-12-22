@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { SauceDemoPage } from '../pages/login_page';
 import * as allure from "allure-js-commons";
 
-
 test.beforeEach('Переход на страницу проекта', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
 })

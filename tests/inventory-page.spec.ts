@@ -43,7 +43,7 @@ test('Переход на страницу товара', async ({ page }) => {
     const inventory_page = new inventoryPage(page);
 
     await allure.step('Клик на тайтл продукта', async () => {
-        await inventory_page.click_link_back_to_products();
+        await inventory_page.clickLinkBackToProducts();
     })
 
     await allure.step('Урл должен вести на страницу товара', async () => {

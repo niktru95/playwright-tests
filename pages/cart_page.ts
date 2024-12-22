@@ -12,13 +12,13 @@ export class cartPage {
         this.remove_button = page.getByTestId('remove-sauce-labs-backpack');
     }
 
-    async click_add_to_cart_button() {
+    async clickAddToCartButton() {
         await this.add_to_cart_button.click();
     }
-    async click_shop_cart_link () {
+    async clickShopCartLink () {
         await this.shop_cart_link.click();
     }
-    async click_remove_button () {
+    async clickRemoveButton () {
         await this.remove_button.click();
     }
 }

@@ -17,11 +17,11 @@ test('Выход из аккаунта пользователя', async ({page})
     const logout_page = new logoutPage(page);
 
     await allure.step('Кликнуть на боковое меню', async () => {
-        await logout_page.click_burger_menu();
+        await logout_page.clickBurgerMenu();
     })
 
     await allure.step('Кликнуть на кнопку Logout', async () => {
-        await logout_page.click_logout_button();
+        await logout_page.clickLogoutButton();
     })
 
     await allure.step('Совершен переход на страницу авторизации', async () => {
