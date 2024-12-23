@@ -42,6 +42,3 @@ test('Удаление продукта из корзины', async ({page}) => 
         await expect(page.getByTestId('inventory-item-desc')).toBeHidden();
     })
 })
-
-
-
