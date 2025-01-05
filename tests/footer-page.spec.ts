@@ -27,6 +27,6 @@ test('Проверка наличия элементов в футере', async
 
     await allure.step('Отображается копирайт', async () => {
         await expect(page.getByTestId('footer-copy')).toBeVisible();
-        await expect(page.getByTestId('footer-copy')).toHaveText('© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy');
+        await expect(page.getByTestId('footer-copy')).toHaveText('© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy');
     });
 })
