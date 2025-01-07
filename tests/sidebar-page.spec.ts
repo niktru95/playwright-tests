@@ -6,11 +6,11 @@ import { sidebarPage } from '../pages/sidebar_page';
 import * as allure from "allure-js-commons";
 
 test.beforeEach('Аутентификация', async ({ page }) => {
-    await page.goto('https://www.saucedemo.com/');
-    await page.getByPlaceholder('Username').fill('standard_user');
-    await page.getByPlaceholder('Password').fill('secret_sauce');
+    await page.goto(process.env.LOGIN_PAGE);
+    await page.getByPlaceholder('Username').fill(process.env.LOGIN);
+    await page.getByPlaceholder('Password').fill(process.env.PASSWORD);
     await page.getByRole('button', { name: "Login" }).click();
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    await expect(page).toHaveURL(process.env.INVENTORY_PAGE);
     await expect(page.getByText('Products')).toBeVisible();
 });
 

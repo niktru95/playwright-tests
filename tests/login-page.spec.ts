@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test';
 import { SauceDemoPage } from '../pages/login_page';
 import * as allure from "allure-js-commons";
 
-test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com/');
-})
 
+test.beforeEach('Переход на страницу проекта', async ({ page }) => {
+  await page.goto(process.env.LOGIN_PAGE);
+})
 
 test('После авторизации должен быть совершен переход на страницу товаров', async ({ page }) => {
   await allure.displayName('Ввод корректных данных для входа');
@@ -13,7 +13,7 @@ test('После авторизации должен быть совершен �
   const saucedemopage = new SauceDemoPage(page);
 
   await allure.step('Ввести данные пользователя', async () => {
-    await saucedemopage.auth('standard_user', 'secret_sauce');
+    await saucedemopage.auth(process.env.LOGIN, process.env.PASSWORD);
   })
 
   await allure.step('Кликнуть на кнопку авторизации', async () => {
@@ -21,7 +21,7 @@ test('После авторизации должен быть совершен �
   })
 
   await allure.step('Убедиться, что открылась страница товаров с тайтлом Products', async () => {
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    await expect(page).toHaveURL(process.env.INVENTORY_PAGE);
     await expect(page.getByText('Products')).toBeVisible();
   })
 });
@@ -33,7 +33,7 @@ test('После ввода некорректного логина должна
   const saucedemopage = new SauceDemoPage(page);
 
   await allure.step('Ввести некорректный логин пользователя', async () => {
-    await saucedemopage.auth('incorrect_login', 'secret_sauce');
+    await saucedemopage.auth('incorrect_login', process.env.PASSWORD);
   })
 
   await allure.step('Кликнуть на кнопку авторизации', async () => {
@@ -52,7 +52,7 @@ test('После ввода некорректного пароля должна
   const saucedemopage = new SauceDemoPage(page);
 
   await allure.step('Ввести некорректный пароль пользователя', async () => {
-    await saucedemopage.auth('standard_user', 'incorrect_pass');
+    await saucedemopage.auth(process.env.LOGIN, 'incorrect_pass');
   })
 
   await allure.step('Кликнуть на кнопку авторизации', async () => {

@@ -3,11 +3,11 @@ import { cartPage } from '../pages/cart_page';
 import * as allure from "allure-js-commons";
 
 test.beforeEach('Аутентификация', async ({ page }) => {
-    await page.goto('https://www.saucedemo.com/');
-    await page.getByPlaceholder('Username').fill('standard_user');
-    await page.getByPlaceholder('Password').fill('secret_sauce');
+    await page.goto(process.env.LOGIN_PAGE);
+    await page.getByPlaceholder('Username').fill(process.env.LOGIN);
+    await page.getByPlaceholder('Password').fill(process.env.PASSWORD);
     await page.getByRole('button', { name: "Login" }).click();
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    await expect(page).toHaveURL(process.env.INVENTORY_PAGE);
     await expect(page.getByText('Products')).toBeVisible();
 });
 
@@ -25,7 +25,7 @@ test('Удаление товара из корзины', async ({page}) => {
     })
 
     await allure.step('Открывается страница корзины', async () => {
-        await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
+        await expect(page).toHaveURL(process.env.CART_PAGE);
     })
 
     await allure.step('Значение количества товара стало 1', async () => {
@@ -57,7 +57,7 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открывается страница корзины', async () => {
-        await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
+        await expect(page).toHaveURL(process.env.CART_PAGE);
     });
 
     await allure.step('Значение количества товара стало 1', async () => {
@@ -77,11 +77,11 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открылась страница ввода информации о покупателе', async () => {
-        await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-one.html');
+        await expect(page).toHaveURL(process.env.CHECKOUT_PAGE_ONE);
     });
 
     await allure.step('Ввести данные о пользователе', async () => {
-        await cart_page.fillUserInformation('Nick', 'Petrov', '193195');
+        await cart_page.fillUserInformation(process.env.FIRST_NAME, process.env.LAST_NAME, process.env.ZIPCODE);
     });
 
     await allure.step('Кликнуть на кнопку Continue', async () => {
@@ -89,7 +89,7 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открылась страница оформления заказа', async () => {
-        await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-two.html');
+        await expect(page).toHaveURL(process.env.CHECKOUT_PAGE_TWO);
     });
 
     await allure.step('Значение количества товара стало 1', async () => {
@@ -128,7 +128,8 @@ test('Покупка товара', async ({page}) => {
         await expect(page.getByTestId('complete-header')).toBeVisible();
         await expect(page.getByTestId('complete-header')).toHaveText('Thank you for your order!');
         await expect(page.getByTestId('complete-text')).toBeVisible();
-        await expect(page.getByTestId('complete-text')).toHaveText('Your order has been dispatched, and will arrive just as fast as the pony can get there!');
+        await expect(page.getByTestId('complete-text')).toHaveText('Your order has been dispatched, ' +
+            'and will arrive just as fast as the pony can get there!');
     });
 
     await allure.step('Кликнуть на кнопку Finish', async () => {
@@ -136,6 +137,6 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открывается главная страница', async () => {
-        await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+        await expect(page).toHaveURL(process.env.INVENTORY_PAGE);
     });
 });

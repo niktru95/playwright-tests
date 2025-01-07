@@ -4,7 +4,6 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /allure-results/
-/PW.practice/.auth
 ### macOS ###
 # General
 .DS_Store
@@ -37,3 +36,7 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
+/env/.env
+/.idea/material_theme_project_new.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
