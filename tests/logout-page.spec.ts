@@ -2,14 +2,9 @@ import { test, expect } from '@playwright/test';
 import { logoutPage } from '../pages/logout_page';
 import * as allure from "allure-js-commons";
 
-test.beforeEach('Аутентификация', async ({ page }) => {
-    await page.goto(process.env.LOGIN_PAGE);
-    await page.getByPlaceholder('Username').fill(process.env.LOGIN);
-    await page.getByPlaceholder('Password').fill(process.env.PASSWORD);
-    await page.getByRole('button', { name: "Login" }).click();
-    await expect(page).toHaveURL(process.env.INVENTORY_PAGE);
-    await expect(page.getByText('Products')).toBeVisible();
-});
+test.beforeEach('Переход на страницу проекта', async ({page}) => {
+    await page.goto(process.env.INVENTORY_PAGE);
+})
 
 test('Выход из аккаунта пользователя', async ({page}) => {
     await allure.displayName('Выход из аккаунта пользователя');

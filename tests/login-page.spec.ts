@@ -2,10 +2,9 @@ import { test, expect } from '@playwright/test';
 import { SauceDemoPage } from '../pages/login_page';
 import * as allure from "allure-js-commons";
 
-
 test.beforeEach('Переход на страницу проекта', async ({ page }) => {
   await page.goto(process.env.LOGIN_PAGE);
-})
+});
 
 test('После авторизации должен быть совершен переход на страницу товаров', async ({ page }) => {
   await allure.displayName('Ввод корректных данных для входа');
