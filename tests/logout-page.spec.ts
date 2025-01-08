@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test';
 import { logoutPage } from '../pages/logout_page';
 import * as allure from "allure-js-commons";
 
-test.beforeEach('Переход на страницу проекта', async ({page}) => {
-    await page.goto(process.env.INVENTORY_PAGE);
-})
+test.beforeEach('Переход на страницу проекта', async ({ page }) => {
+    await page.goto('/inventory.html');
+});
 
 test('Выход из аккаунта пользователя', async ({page}) => {
     await allure.displayName('Выход из аккаунта пользователя');
@@ -20,7 +20,7 @@ test('Выход из аккаунта пользователя', async ({page})
     })
 
     await allure.step('Совершен переход на страницу авторизации', async () => {
-        await expect(page).toHaveURL('https://www.saucedemo.com/');
+        await expect(page).toHaveURL('/');
         await expect(page.getByText('Swag Labs')).toBeVisible();
         await expect(page.getByTestId('login-button')).toBeVisible();
     })

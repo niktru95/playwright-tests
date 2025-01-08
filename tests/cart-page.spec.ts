@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test';
 import { cartPage } from '../pages/cart_page';
 import * as allure from "allure-js-commons";
 
-test.beforeEach('Переход на страницу проекта', async ({page}) => {
-    await page.goto(process.env.INVENTORY_PAGE);
-})
+test.beforeEach('Переход на страницу проекта', async ({ page }) => {
+    await page.goto('/inventory.html');
+});
 
 test('Удаление товара из корзины', async ({page}) => {
     await allure.displayName('Удаление товара из корзины');
@@ -20,7 +20,7 @@ test('Удаление товара из корзины', async ({page}) => {
     })
 
     await allure.step('Открывается страница корзины', async () => {
-        await expect(page).toHaveURL(process.env.CART_PAGE);
+        await expect(page).toHaveURL('/cart.html');
     })
 
     await allure.step('Значение количества товара стало 1', async () => {
@@ -52,7 +52,7 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открывается страница корзины', async () => {
-        await expect(page).toHaveURL(process.env.CART_PAGE);
+        await expect(page).toHaveURL('/cart.html');
     });
 
     await allure.step('Значение количества товара стало 1', async () => {
@@ -72,11 +72,14 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открылась страница ввода информации о покупателе', async () => {
-        await expect(page).toHaveURL(process.env.CHECKOUT_PAGE_ONE);
+        await expect(page).toHaveURL('/checkout-step-one.html');
     });
 
     await allure.step('Ввести данные о пользователе', async () => {
-        await cart_page.fillUserInformation(process.env.FIRST_NAME, process.env.LAST_NAME, process.env.ZIPCODE);
+        await cart_page.fillUserInformation(
+            process.env.FIRST_NAME,
+            process.env.LAST_NAME,
+            process.env.ZIPCODE);
     });
 
     await allure.step('Кликнуть на кнопку Continue', async () => {
@@ -132,6 +135,6 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открывается главная страница', async () => {
-        await expect(page).toHaveURL(process.env.INVENTORY_PAGE);
+        await expect(page).toHaveURL('/inventory.html');
     });
 });

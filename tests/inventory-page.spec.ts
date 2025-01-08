@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test';
 import { inventoryPage } from '../pages/inventory_page';
 import * as allure from "allure-js-commons";
 
-test.beforeEach('Переход на страницу проекта', async ({page}) => {
-    await page.goto(process.env.INVENTORY_PAGE);
-})
+test.beforeEach('Переход на страницу проекта', async ({ page }) => {
+    await page.goto('/inventory.html');
+});
 
 test('Проверка наличия данных в карточке товара на главной странице', async ({ page }) => {
     await allure.displayName("Проверка наличия данных в карточке на главной странице");
@@ -42,7 +42,7 @@ test('Переход на страницу товара', async ({ page }) => {
     })
 
     await allure.step('Урл должен вести на страницу товара', async () => {
-        await expect(page).toHaveURL('https://www.saucedemo.com/inventory-item.html?id=4');
+        await expect(page).toHaveURL('/inventory-item.html?id=4');
     })
 
     await allure.step('В карточке товара отображается описание', async () => {

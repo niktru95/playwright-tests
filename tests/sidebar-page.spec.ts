@@ -5,9 +5,9 @@ import { test, expect } from '@playwright/test';
 import { sidebarPage } from '../pages/sidebar_page';
 import * as allure from "allure-js-commons";
 
-test.beforeEach('Переход на страницу проекта', async ({page}) => {
-    await page.goto(process.env.INVENTORY_PAGE);
-})
+test.beforeEach('Переход на страницу проекта', async ({ page }) => {
+    await page.goto('/inventory.html');
+});
 
 test('Проверка наличия элементов в боковом меню', async ({page}) => {
     await allure.displayName('Проверка наличия элементов в в боковом меню');
@@ -42,8 +42,8 @@ test('Клик на кнопку All items ведет на главную стр
     const sidebar_page = new sidebarPage(page);
 
     await allure.step('Перейти на страницу товара', async () => {
-        await page.goto('https://www.saucedemo.com/inventory-item.html?id=4');
-        await expect(page).toHaveURL('https://www.saucedemo.com/inventory-item.html?id=4');
+        await page.goto('/inventory-item.html?id=4');
+        await expect(page).toHaveURL('/inventory-item.html?id=4');
     });
 
     await allure.step('Открыть боковое меню', async () => {
@@ -55,7 +55,7 @@ test('Клик на кнопку All items ведет на главную стр
     });
 
     await allure.step('Открылась главная страница с товарами', async () => {
-        await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+        await expect(page).toHaveURL('/inventory.html');
     });
 });
 

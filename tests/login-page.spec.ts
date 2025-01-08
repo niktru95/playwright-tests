@@ -3,8 +3,10 @@ import { SauceDemoPage } from '../pages/login_page';
 import * as allure from "allure-js-commons";
 
 test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-  await page.goto(process.env.LOGIN_PAGE);
+  await page.goto('/');
 });
+
+test.use({ storageState: { cookies: [], origins: [] } });
 
 test('После авторизации должен быть совершен переход на страницу товаров', async ({ page }) => {
   await allure.displayName('Ввод корректных данных для входа');
@@ -20,7 +22,7 @@ test('После авторизации должен быть совершен �
   })
 
   await allure.step('Убедиться, что открылась страница товаров с тайтлом Products', async () => {
-    await expect(page).toHaveURL(process.env.INVENTORY_PAGE);
+    await expect(page).toHaveURL('/inventory.html');
     await expect(page.getByText('Products')).toBeVisible();
   })
 });
