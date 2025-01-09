@@ -36,7 +36,6 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
-/env/.env
 /.idea/material_theme_project_new.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
