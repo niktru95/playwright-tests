@@ -130,7 +130,7 @@ test('Покупка товара', async ({page}) => {
             'and will arrive just as fast as the pony can get there!');
     });
 
-    await allure.step('Кликнуть на кнопку Finish', async () => {
+    await allure.step('Кликнуть на кнопку Back Home', async () => {
         await cart_page.clickBackToProductsButton();
     });
 
