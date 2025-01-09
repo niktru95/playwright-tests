@@ -87,7 +87,7 @@ test('Покупка товара', async ({page}) => {
     });
 
     await allure.step('Открылась страница оформления заказа', async () => {
-        await expect(page).toHaveURL(process.env.CHECKOUT_PAGE_TWO);
+        await expect(page).toHaveURL('/checkout-step-two.html');
     });
 
     await allure.step('Значение количества товара стало 1', async () => {
