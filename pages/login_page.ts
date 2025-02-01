@@ -19,6 +19,6 @@ export class SauceDemoPage {
   }
 
   async click_login_button() {
-    await this.loginButton.click();
+    await this.loginForm.click();
   }
 }

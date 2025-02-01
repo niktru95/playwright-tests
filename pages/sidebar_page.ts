@@ -9,7 +9,7 @@ export class sidebarPage {
     constructor(page: Page) {
         this.burgerMenu = page.getByRole('button', { name: 'Open Menu' });
         this.allItemsItem = page.getByText('All Items');
-        this.aboutItem = page.getByText('About');
+        this.aboutItem = page.getByTestId('about-sidebar-link');
     };
 
     async clickBurgerMenu () {
