@@ -1,18 +1,14 @@
-import { test, expect } from '@playwright/test';
-
-test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-    await page.goto('/inventory.html');
-});
+import { test } from '@playwright/test';
+import {FooterPage} from "../pages/footer_page";
 
 test('Проверка наличия элементов в футере', async ({ page }) => {
-    await expect(page.getByTestId('social-twitter')).toBeVisible();
+    const footerPage = new FooterPage(page)
+    await footerPage.goTo('/inventory.html');
 
-    await expect(page.getByTestId('social-facebook')).toBeVisible();
-
-    await expect(page.getByTestId('social-linkedin')).toBeVisible();
-
-    await expect(page.getByTestId('footer-copy')).toBeVisible();
-    await expect(page.getByTestId('footer-copy')).toHaveText(
-        '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'
-    );
+    await footerPage.isVisible('social-twitter');
+    await footerPage.isVisible('social-facebook');
+    await footerPage.isVisible('social-linkedin');
+    await footerPage.isVisible('footer-copy');
+    await footerPage.checkText('footer-copy', '© 2025 Sauce Labs. All Rights Reserved. ' +
+        'Terms of Service | Privacy Policy');
 });

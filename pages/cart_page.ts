@@ -1,7 +1,7 @@
 import { Locator, type Page } from "@playwright/test";
+import {BasePage} from "./base-page";
 
-export class cartPage {
-    readonly page: Page;
+export class CartPage extends BasePage{
     readonly addToCartButton: Locator;
     readonly shopCartLink: Locator;
     readonly removeButton: Locator;
@@ -14,6 +14,7 @@ export class cartPage {
     readonly backToProductsButton: Locator;
 
     constructor(page: Page) {
+        super(page);
         this.addToCartButton = page.getByTestId('add-to-cart-sauce-labs-backpack');
         this.shopCartLink = page.getByTestId('shopping-cart-link');
         this.removeButton = page.getByTestId('remove-sauce-labs-backpack');

@@ -1,30 +1,22 @@
-import { test, expect } from '@playwright/test';
-import { inventoryPage } from '../pages/inventory_page';
+import { test } from "../fixtures/fixtures";
 
 test.beforeEach('Переход на страницу проекта', async ({ page }) => {
     await page.goto('/inventory.html');
 });
 
-test('Проверка наличия данных в карточке товара на главной странице', async ({ page }) => {
-    await expect(page.getByTestId('inventory-item-name').first()).toBeVisible();
+test('Проверка наличия данных в карточке товара на главной странице', async ({ inventoryPageFixture }) => {
 
-    await expect(page.getByTestId('inventory-item-desc').first()).toBeVisible();
-
-    await expect(page.getByTestId('inventory-item-price').first()).toBeVisible();
-
-    await expect(page.getByTestId('add-to-cart-sauce-labs-backpack').first()).toBeVisible();
+    await inventoryPageFixture.isVisibleFirst('inventory-item-name');
+    await inventoryPageFixture.isVisibleFirst('inventory-item-desc');
+    await inventoryPageFixture.isVisibleFirst('inventory-item-price');
+    await inventoryPageFixture.isVisibleFirst('add-to-cart-sauce-labs-backpack');
 });
 
-test('Переход на страницу товара', async ({ page }) => {
-    const inventory_page = new inventoryPage(page);
+test('Переход на страницу товара', async ({ inventoryPageFixture }) => {
 
-    await inventory_page.clickLinkBackToProducts();
-
-    await expect(page).toHaveURL('/inventory-item.html?id=4');
-
-    await expect(page.getByTestId('inventory-item-desc')).toBeVisible();
-
-    await expect(page.getByTestId('inventory-item-price')).toBeVisible();
-
-    await expect(page.getByTestId('add-to-cart')).toBeVisible();
+    await inventoryPageFixture.clickLinkBackToProducts();
+    await inventoryPageFixture.checkURL('/inventory-item.html?id=4');
+    await inventoryPageFixture.isVisible('inventory-item-desc');
+    await inventoryPageFixture.isVisible('inventory-item-price');
+    await inventoryPageFixture.isVisible('add-to-cart');
 });

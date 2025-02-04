@@ -1,13 +1,11 @@
 import { test, expect } from '@playwright/test';
-
-test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-    await page.goto('/inventory.html');
-});
+import {HeaderPage} from "../pages/header_page";
 
 test('Проверка наличия элементов в хедере', async ({ page }) => {
+    const headerPage = new HeaderPage(page);
+
+    await headerPage.goTo('/inventory.html');
     await expect(page.getByRole('button', { name: 'Open Menu' })).toBeVisible();
-
-    await expect(page.getByText('Swag Labs')).toBeVisible();
-
-    await expect(page.getByTestId('shopping-cart-link')).toBeVisible();
+    await headerPage.isVisibleGetByText('Swag Labs')
+    await headerPage.isVisible('shopping-cart-link');
 });

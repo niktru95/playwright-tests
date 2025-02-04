@@ -1,86 +1,55 @@
-import { test, expect } from '@playwright/test';
-import { cartPage } from '../pages/cart_page';
+import { test } from "../fixtures/fixtures";
 
-test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-    await page.goto('/inventory.html');
+test.beforeEach('Переход на страницу, добавление товара в корзину', async ({ cartPageFixture }) => {
+    await cartPageFixture.goTo('/inventory.html');
+    await cartPageFixture.clickAddToCartButton();
+    await cartPageFixture.clickShopCartLink();
+    await cartPageFixture.checkQuantity('item-quantity', '1');
 });
 
-test.describe('Проверка функционала корзины, покупки товара', async () => {
+test.describe('Проверка функционала корзины', () => {
 
-    test('Удаление товара из корзины', async ({ page }) => {
-        const cart_page = new cartPage(page);
-
-        await cart_page.clickAddToCartButton();
-
-        await cart_page.clickShopCartLink();
-
-        await expect(page).toHaveURL('/cart.html');
-
-        await expect(page.getByTestId('item-quantity')).toHaveText('1');
-
-        await cart_page.clickRemoveButton();
-
-        await expect(page.getByTestId('inventory-item-name')).toBeHidden();
-        await expect(page.getByTestId('inventory-item-price')).toBeHidden();
-        await expect(page.getByTestId('inventory-item-desc')).toBeHidden();
+    test('Удаление товара из корзины', async ({ cartPageFixture }) => {
+        await cartPageFixture.clickRemoveButton();
+        await cartPageFixture.isHidden('inventory-item-name');
+        await cartPageFixture.isHidden('inventory-item-price');
+        await cartPageFixture.isHidden('inventory-item-desc');
     });
 
-    test('Покупка товара', async ({ page }) => {
-        const cart_page = new cartPage(page);
+    test('Покупка товара', async ({ cartPageFixture }) => {
+        await cartPageFixture.isVisible('inventory-item-name');
+        await cartPageFixture.isVisible('inventory-item-desc')
+        await cartPageFixture.clickCheckoutButton();
+        await cartPageFixture.checkURL('/checkout-step-one.html');
 
-        await cart_page.clickAddToCartButton();
-
-        await cart_page.clickShopCartLink();
-
-        await expect(page).toHaveURL('/cart.html');
-
-        await expect(page.getByTestId('item-quantity')).toHaveText('1');
-
-        await expect(page.getByText('Sauce Labs Backpack')).toBeVisible();
-
-        await expect(page.getByTestId('inventory-item-desc')).toBeVisible();
-
-        await cart_page.clickCheckoutButton();
-
-        await expect(page).toHaveURL('/checkout-step-one.html');
-
-        await cart_page.fillUserInformation(
+        await cartPageFixture.fillUserInformation(
             process.env.FIRST_NAME,
             process.env.LAST_NAME,
             process.env.ZIPCODE
         );
 
-        await cart_page.clickContinueButton();
+        await cartPageFixture.clickContinueButton();
 
-        await expect(page).toHaveURL('/checkout-step-two.html');
+        await cartPageFixture.checkURL('/checkout-step-two.html');
+        await cartPageFixture.checkText('item-quantity', '1');
+        await cartPageFixture.isVisible('inventory-item-name');
+        await cartPageFixture.isVisible('inventory-item-desc');
+        await cartPageFixture.isVisible('payment-info-label');
+        await cartPageFixture.isVisible('payment-info-value');
+        await cartPageFixture.isVisible('shipping-info-label');
+        await cartPageFixture.isVisible('shipping-info-value');
+        await cartPageFixture.isVisible('subtotal-label');
+        await cartPageFixture.isVisible('tax-label');
+        await cartPageFixture.isVisible('total-label');
 
-        await expect(page.getByTestId('item-quantity')).toHaveText('1');
+        await cartPageFixture.clickFinishButton();
 
-        await expect(page.getByText('Sauce Labs Backpack')).toBeVisible();
+        await cartPageFixture.checkText('complete-header', 'Thank you for your order!');
+        await cartPageFixture.checkText('complete-text', 'Your order has been dispatched, ' +
+            'and will arrive just as fast as the pony can get there!');
 
-        await expect(page.getByTestId('inventory-item-desc')).toBeVisible();
+        await cartPageFixture.clickBackToProductsButton();
 
-        await expect(page.getByTestId('payment-info-label')).toBeVisible();
-        await expect(page.getByTestId('payment-info-value')).toBeVisible();
-
-        await expect(page.getByTestId('shipping-info-label')).toBeVisible();
-        await expect(page.getByTestId('shipping-info-value')).toBeVisible();
-
-        await expect(page.getByTestId('subtotal-label')).toBeVisible();
-        await expect(page.getByTestId('tax-label')).toBeVisible();
-        await expect(page.getByTestId('total-label')).toBeVisible();
-
-        await cart_page.clickFinishButton();
-
-        await expect(page.getByTestId('complete-header')).toBeVisible();
-        await expect(page.getByTestId('complete-header')).toHaveText('Thank you for your order!');
-        await expect(page.getByTestId('complete-text')).toBeVisible();
-        await expect(page.getByTestId('complete-text')).toHaveText(
-            'Your order has been dispatched, and will arrive just as fast as the pony can get there!'
-        );
-
-        await cart_page.clickBackToProductsButton();
-
-        await expect(page).toHaveURL('/inventory.html');
+        await cartPageFixture.checkURL('/inventory.html');
     });
 });

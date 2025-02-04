@@ -1,13 +1,13 @@
 import { type Locator, type Page } from '@playwright/test';
+import {BasePage} from "./base-page";
 
-export class SauceDemoPage {
-  readonly page: Page;
+export class LoginPage extends BasePage{
   readonly loginForm: Locator;
   readonly passForm: Locator;
   readonly loginButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.loginButton = page.getByPlaceholder('Username');
     this.passForm = page.getByPlaceholder('Password');
     this.loginForm = page.getByRole('button', {name: "Login"});
