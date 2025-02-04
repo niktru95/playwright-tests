@@ -16,9 +16,6 @@ export class BasePage {
         await expect(this.page).toHaveURL(url);
     }
 
-    async checkQuantity(selector: string, quantity: string) {
-        await expect(this.page.getByTestId(selector)).toHaveText(quantity);
-    }
 
     async checkText(selector: string, text: string) {
         await expect(this.page.getByTestId(selector)).toHaveText(text);

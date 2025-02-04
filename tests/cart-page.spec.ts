@@ -4,7 +4,7 @@ test.beforeEach('Переход на страницу, добавление то
     await cartPageFixture.goTo('/inventory.html');
     await cartPageFixture.clickAddToCartButton();
     await cartPageFixture.clickShopCartLink();
-    await cartPageFixture.checkQuantity('item-quantity', '1');
+    await cartPageFixture.checkText('item-quantity', '1');
 });
 
 test.describe('Проверка функционала корзины', () => {

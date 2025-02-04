@@ -5,7 +5,6 @@ import {InventoryPage} from "../pages/inventory_page";
 import {LoginPage} from "../pages/login_page";
 
 
-
 type MyFixtures = {
     cartPageFixture: CartPage;
     sidebarPageFixture: SidebarPage;
