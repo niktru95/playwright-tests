@@ -16,7 +16,6 @@ export class BasePage {
         await expect(this.page).toHaveURL(url);
     }
 
-
     async checkText(selector: string, text: string) {
         await expect(this.page.getByTestId(selector)).toHaveText(text);
     }
@@ -31,10 +30,6 @@ export class BasePage {
 
     async isHidden(selector: string) {
         await expect(this.page.getByTestId(selector)).toBeHidden();
-    }
-
-    async fillText(selector: string, text: string) {
-        await this.page.getByTestId((selector)).fill(text);
     }
 
     async isVisibleGetByText(text: string) {

@@ -21,7 +21,6 @@ test.describe('Проверка функционала корзины', () => {
         await cartPageFixture.isVisible('inventory-item-desc')
         await cartPageFixture.clickCheckoutButton();
         await cartPageFixture.checkURL('/checkout-step-one.html');
-
         await cartPageFixture.fillUserInformation(
             process.env.FIRST_NAME,
             process.env.LAST_NAME,

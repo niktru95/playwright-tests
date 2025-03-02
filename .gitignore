@@ -42,3 +42,4 @@ Temporary Items
 /playwright/
 /env/
 /.idea/
+!/env/

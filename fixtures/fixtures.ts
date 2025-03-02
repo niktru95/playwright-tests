@@ -1,5 +1,5 @@
-import { CartPage } from "../pages/cart_page";
 import { test as base } from '@playwright/test';
+import { CartPage } from "../pages/cart_page";
 import {SidebarPage} from "../pages/sidebar_page";
 import {InventoryPage} from "../pages/inventory_page";
 import {LoginPage} from "../pages/login_page";
