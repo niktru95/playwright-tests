@@ -1,11 +1,5 @@
 import { test } from "../fixtures/fixtures";
-
-test.beforeEach('Переход на страницу, добавление товара в корзину', async ({ cartPageFixture }) => {
-    await cartPageFixture.goTo('/inventory.html');
-    await cartPageFixture.clickAddToCartButton();
-    await cartPageFixture.clickShopCartLink();
-    await cartPageFixture.checkText('item-quantity', '1');
-});
+import { CartWarnings } from '../enum/enum'
 
 test.describe('Проверка функционала корзины', () => {
 
@@ -43,9 +37,8 @@ test.describe('Проверка функционала корзины', () => {
 
         await cartPageFixture.clickFinishButton();
 
-        await cartPageFixture.checkText('complete-header', 'Thank you for your order!');
-        await cartPageFixture.checkText('complete-text', 'Your order has been dispatched, ' +
-            'and will arrive just as fast as the pony can get there!');
+        await cartPageFixture.checkText('complete-header', CartWarnings.completeHeaderText);
+        await cartPageFixture.checkText('complete-text', CartWarnings.completeOrderText);
 
         await cartPageFixture.clickBackToProductsButton();
 

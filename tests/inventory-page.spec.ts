@@ -1,9 +1,5 @@
 import { test } from "../fixtures/fixtures";
 
-test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-    await page.goto('/inventory.html');
-});
-
 test('Проверка наличия данных в карточке товара на главной странице', async ({ inventoryPageFixture }) => {
 
     await inventoryPageFixture.isVisibleFirst('inventory-item-name');

@@ -1,8 +1,5 @@
 import {test} from "../fixtures/fixtures";
-
-test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-  await page.goto('/');
-});
+import { LoginPageWarnings } from "../enum/enum";
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
@@ -21,8 +18,7 @@ test('После ввода некорректного логина должна
   await loginPageFixture.click_login_button();
 
   await loginPageFixture.isVisible('error');
-  await loginPageFixture.checkText('error', 'Epic sadface: Username and password ' +
-      'do not match any user in this service');
+  await loginPageFixture.checkText('error', LoginPageWarnings.loginError);
 });
 
 test('После ввода некорректного пароля должна быть ошибка авторизации', async ({ loginPageFixture }) => {
@@ -31,8 +27,7 @@ test('После ввода некорректного пароля должна
   await loginPageFixture.click_login_button();
 
   await loginPageFixture.isVisible('error');
-  await loginPageFixture.checkText('error', 'Epic sadface: Username and password ' +
-      'do not match any user in this service');
+  await loginPageFixture.checkText('error', LoginPageWarnings.loginError);
 });
 
 test('После ввода некорректного пароля и логина должна быть ошибка авторизации', async ({ loginPageFixture }) => {
@@ -41,6 +36,5 @@ test('После ввода некорректного пароля и логи�
   await loginPageFixture.click_login_button();
 
   await loginPageFixture.isVisible('error');
-  await loginPageFixture.checkText('error', 'Epic sadface: Username and password ' +
-      'do not match any user in this service');
+  await loginPageFixture.checkText('error', LoginPageWarnings.loginError);
 });

@@ -1,5 +1,6 @@
 import { test } from '@playwright/test';
 import {FooterPage} from "../pages/footer_page";
+import { FooterCopyTexts } from "../enum/enum";
 
 test('Проверка наличия элементов в футере', async ({ page }) => {
     const footerPage = new FooterPage(page)
@@ -9,6 +10,5 @@ test('Проверка наличия элементов в футере', async
     await footerPage.isVisible('social-facebook');
     await footerPage.isVisible('social-linkedin');
     await footerPage.isVisible('footer-copy');
-    await footerPage.checkText('footer-copy', '© 2025 Sauce Labs. All Rights Reserved. ' +
-        'Terms of Service | Privacy Policy');
+    await footerPage.checkText('footer-copy', FooterCopyTexts.footerCopyrightText);
 });

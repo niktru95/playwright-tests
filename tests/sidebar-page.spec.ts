@@ -1,10 +1,6 @@
 // Тест на кнопку Reset App State написан не будет (состояние сайта не меняется)
 import { test } from "../fixtures/fixtures";
 
-test.beforeEach('Переход на страницу проекта', async ({ page }) => {
-    await page.goto('/inventory.html');
-});
-
 test('Проверка наличия элементов в боковом меню', async ({ sidebarPageFixture }) => {
 
     await sidebarPageFixture.clickBurgerMenu();

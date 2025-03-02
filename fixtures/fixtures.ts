@@ -15,21 +15,28 @@ type MyFixtures = {
 export const test = base.extend<MyFixtures>({
     cartPageFixture: async ({ page }, use) => {
         const cartPageFixture = new CartPage(page);
+        await cartPageFixture.goTo('/inventory.html');
+        await cartPageFixture.clickAddToCartButton();
+        await cartPageFixture.clickShopCartLink();
+        await cartPageFixture.checkText('item-quantity', '1');
         await use(cartPageFixture);
     },
 
     sidebarPageFixture: async ({ page }, use) => {
         const sidebarPageFixture = new SidebarPage(page);
+        await page.goto('/');
         await use(sidebarPageFixture);
     },
 
     inventoryPageFixture: async ({ page }, use) => {
         const inventoryPageFixture = new InventoryPage(page);
+        await page.goto('/inventory.html');
         await use(inventoryPageFixture);
     },
 
     loginPageFixture: async ({ page }, use) => {
         const loginPageFixture = new LoginPage(page);
+        await page.goto('/');
         await use(loginPageFixture);
     },
 });
