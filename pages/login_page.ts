@@ -1,4 +1,4 @@
-import { type Locator, type Page } from '@playwright/test';
+import { type Locator, type Page, BrowserContext } from '@playwright/test';
 import {BasePage} from "./base-page";
 
 export class LoginPage extends BasePage{
@@ -11,6 +11,10 @@ export class LoginPage extends BasePage{
     this.loginButton = page.getByPlaceholder('Username');
     this.passForm = page.getByPlaceholder('Password');
     this.loginForm = page.getByRole('button', {name: "Login"});
+  }
+
+  context(): BrowserContext {
+    return this.page.context();
   }
 
   async auth(login: string, pass: string) {

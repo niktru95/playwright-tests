@@ -1,15 +1,15 @@
-import {test as setup, expect} from '@playwright/test';
+import {test as setup} from "../fixtures/fixtures";
 import * as path from 'path';
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 
-setup('Аутентификация', async ({ page }) => {
-    await page.goto('/');
-    await page.getByPlaceholder('Username').fill(process.env.LOGIN);
-    await page.getByPlaceholder('Password').fill(process.env.PASSWORD);
-    await page.getByRole('button', { name: "Login" }).click();
-    await expect(page).toHaveURL('/inventory.html');
-    await expect(page.getByText('Products')).toBeVisible();
+setup('Аутентификация', async ({ loginPageFixture }) => {
 
-    await page.context().storageState({ path: authFile });
+    await loginPageFixture.auth(process.env.LOGIN, process.env.PASSWORD);
+    await loginPageFixture.click_login_button();
+
+    await loginPageFixture.checkURL('/inventory.html');
+    await loginPageFixture.isVisible('title');
+
+    await loginPageFixture.context().storageState({ path: authFile });
 });
