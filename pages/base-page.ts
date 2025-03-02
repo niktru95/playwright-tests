@@ -35,4 +35,10 @@ export class BasePage {
     async isVisibleGetByText(text: string) {
         await expect(this.page.getByText(text)).toBeVisible();
     }
+
+    async checkVisibilityOfElements(selectorList: string[]) {
+        for (const item of selectorList) {
+            await expect(this.page.getByTestId(item)).toBeVisible();
+        }
+    }
 }

@@ -19,6 +19,8 @@ export const test = base.extend<MyFixtures>({
         await cartPageFixture.clickAddToCartButton();
         await cartPageFixture.clickShopCartLink();
         await cartPageFixture.checkText('item-quantity', '1');
+        await cartPageFixture.isVisible('inventory-item-name');
+        await cartPageFixture.isVisible('inventory-item-desc');
         await use(cartPageFixture);
     },
 
