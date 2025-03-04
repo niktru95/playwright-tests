@@ -1,15 +1,12 @@
-import { test } from '@playwright/test';
-import { LogoutPage } from '../pages/logout_page';
+import { test } from "../fixtures/fixtures";
 
-test('Выход из аккаунта пользователя', async ({ page }) => {
-    const logoutPage = new LogoutPage(page);
+test('Выход из аккаунта пользователя', async ({ logoutPageFixture }) => {
 
-    await logoutPage.goTo('/inventory.html');
-    await logoutPage.clickBurgerMenu();
-    await logoutPage.clickLogoutButton();
-    await logoutPage.checkURL('/');
+    await logoutPageFixture.clickBurgerMenu();
+    await logoutPageFixture.clickLogoutButton();
+    await logoutPageFixture.checkURL('/');
 
-    await logoutPage.isVisibleGetByText('Swag Labs');
-    await logoutPage.isVisible('login-button');
+    await logoutPageFixture.isVisibleGetByText('Swag Labs');
+    await logoutPageFixture.isVisible('login-button');
 });
 

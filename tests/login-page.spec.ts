@@ -20,7 +20,7 @@ test.describe('Проверка авторизации', () => {
     await loginPageFixture.click_login_button();
 
     await loginPageFixture.isVisible('error');
-    await loginPageFixture.checkText('error', LoginPageWarnings.loginError);
+    await loginPageFixture.checkText('error', LoginPageWarnings.LoginError);
   });
 
   test('После ввода некорректного пароля должна быть ошибка авторизации', async ({ loginPageFixture }) => {
@@ -29,7 +29,7 @@ test.describe('Проверка авторизации', () => {
     await loginPageFixture.click_login_button();
 
     await loginPageFixture.isVisible('error');
-    await loginPageFixture.checkText('error', LoginPageWarnings.loginError);
+    await loginPageFixture.checkText('error', LoginPageWarnings.LoginError);
   });
 
   test('После ввода некорректного пароля и логина должна быть ошибка авторизации', async ({ loginPageFixture }) => {
@@ -38,6 +38,6 @@ test.describe('Проверка авторизации', () => {
     await loginPageFixture.click_login_button();
 
     await loginPageFixture.isVisible('error');
-    await loginPageFixture.checkText('error', LoginPageWarnings.loginError);
+    await loginPageFixture.checkText('error', LoginPageWarnings.LoginError);
   });
 });

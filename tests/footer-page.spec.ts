@@ -1,14 +1,11 @@
-import { test } from '@playwright/test';
-import {FooterPage} from "../pages/footer_page";
-import { FooterCopyTexts } from "../enum/enum";
+import { test } from "../fixtures/fixtures";
+import { FooterCopyTexts, Selectors } from "../enum/enum";
 
-test('Проверка наличия элементов в футере', async ({ page }) => {
-    const footerPage = new FooterPage(page)
-    await footerPage.goTo('/inventory.html');
+test('Проверка наличия элементов в футере', async ({ footerPageFixture }) => {
 
-    await footerPage.isVisible('social-twitter');
-    await footerPage.isVisible('social-facebook');
-    await footerPage.isVisible('social-linkedin');
-    await footerPage.isVisible('footer-copy');
-    await footerPage.checkText('footer-copy', FooterCopyTexts.footerCopyrightText);
+    await footerPageFixture.isVisible(Selectors.SocialTwitter);
+    await footerPageFixture.isVisible(Selectors.SocialFacebook);
+    await footerPageFixture.isVisible(Selectors.SocialLinkedin);
+    await footerPageFixture.isVisible(Selectors.FooterCopyText);
+    await footerPageFixture.checkText(Selectors.FooterCopyText, FooterCopyTexts.FooterCopyrightText);
 });

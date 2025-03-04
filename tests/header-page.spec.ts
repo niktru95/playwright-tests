@@ -1,11 +1,10 @@
-import { test, expect } from '@playwright/test';
-import {HeaderPage} from "../pages/header_page";
+import { test } from "../fixtures/fixtures";
+import { expect} from "@playwright/test";
+import {Selectors} from "../enum/enum";
 
-test('Проверка наличия элементов в хедере', async ({ page }) => {
-    const headerPage = new HeaderPage(page);
+test('Проверка наличия элементов в хедере', async ({ page, headerPageFixture }) => {
 
-    await headerPage.goTo('/inventory.html');
     await expect(page.getByRole('button', { name: 'Open Menu' })).toBeVisible();
-    await headerPage.isVisibleGetByText('Swag Labs')
-    await headerPage.isVisible('shopping-cart-link');
+    await headerPageFixture.isVisibleGetByText('Swag Labs')
+    await headerPageFixture.isVisible(Selectors.ShoppingCartLink);
 });

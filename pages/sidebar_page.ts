@@ -1,5 +1,6 @@
 import { Locator, type Page } from "@playwright/test";
 import {BasePage} from "./base-page";
+import {Selectors} from "../enum/enum";
 
 export class SidebarPage extends BasePage{
     readonly burgerMenu: Locator;
@@ -10,7 +11,7 @@ export class SidebarPage extends BasePage{
         super(page);
         this.burgerMenu = page.getByRole('button', { name: 'Open Menu' });
         this.allItemsItem = page.getByText('All Items');
-        this.aboutItem = page.getByTestId('about-sidebar-link');
+        this.aboutItem = page.getByTestId(Selectors.AboutSidebar);
     };
 
     async clickBurgerMenu () {

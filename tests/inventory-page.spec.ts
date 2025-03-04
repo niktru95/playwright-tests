@@ -1,21 +1,22 @@
 import { test } from "../fixtures/fixtures";
+import {Selectors} from "../enum/enum";
 
 test.describe('Проверки на главной странице', () => {
 
     test('Проверка наличия данных в карточке товара на главной странице', async ({ inventoryPageFixture }) => {
 
-        await inventoryPageFixture.isVisibleFirst('inventory-item-name');
-        await inventoryPageFixture.isVisibleFirst('inventory-item-desc');
-        await inventoryPageFixture.isVisibleFirst('inventory-item-price');
-        await inventoryPageFixture.isVisibleFirst('add-to-cart-sauce-labs-backpack');
+        await inventoryPageFixture.isVisibleFirst(Selectors.InventoryItemName);
+        await inventoryPageFixture.isVisibleFirst(Selectors.InventoryItemDesc);
+        await inventoryPageFixture.isVisibleFirst(Selectors.InventoryItemPrice);
+        await inventoryPageFixture.isVisibleFirst(Selectors.AddToCartItem);
     });
 
     test('Переход на страницу товара', async ({ inventoryPageFixture }) => {
 
         await inventoryPageFixture.clickLinkBackToProducts();
         await inventoryPageFixture.checkURL('/inventory-item.html?id=4');
-        await inventoryPageFixture.isVisible('inventory-item-desc');
-        await inventoryPageFixture.isVisible('inventory-item-price');
-        await inventoryPageFixture.isVisible('add-to-cart');
+        await inventoryPageFixture.isVisible(Selectors.InventoryItemDesc);
+        await inventoryPageFixture.isVisible(Selectors.InventoryItemPrice);
+        await inventoryPageFixture.isVisible(Selectors.AddToCartApprove);
     });
 });

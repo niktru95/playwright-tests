@@ -38,7 +38,7 @@ export class BasePage {
 
     async checkVisibilityOfElements(selectorList: string[]) {
         for (const item of selectorList) {
-            await expect(this.page.getByTestId(item)).toBeVisible();
+            await this.isVisible(item);
         }
     }
 }
