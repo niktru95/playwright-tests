@@ -1,6 +1,6 @@
 import { test } from "../fixtures/fixtures";
-import { CartWarnings, Selectors } from '../enum/enum'
-import { CartSelectorsArray } from "../selectors/selectors";
+import { CartWarnings} from '../enum/enum'
+import { Selectors, CartSelectorsArray} from "../selectors/selectors";
 
 test.describe('Проверка функционала корзины', () => {
 

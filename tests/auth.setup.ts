@@ -1,6 +1,7 @@
 import {test as setup} from "../fixtures/fixtures";
 import * as path from 'path';
-import {Selectors} from "../enum/enum";
+import {Selectors} from "../selectors/selectors";
+
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 

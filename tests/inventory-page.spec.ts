@@ -1,6 +1,5 @@
 import { test } from "../fixtures/fixtures";
-import {Selectors} from "../enum/enum";
-
+import {Selectors} from "../selectors/selectors";
 test.describe('Проверки на главной странице', () => {
 
     test('Проверка наличия данных в карточке товара на главной странице', async ({ inventoryPageFixture }) => {

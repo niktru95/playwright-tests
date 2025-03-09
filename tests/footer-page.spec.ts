@@ -1,5 +1,6 @@
 import { test } from "../fixtures/fixtures";
-import { FooterCopyTexts, Selectors } from "../enum/enum";
+import { FooterCopyTexts} from "../enum/enum";
+import {Selectors} from "../selectors/selectors";
 
 test('Проверка наличия элементов в футере', async ({ footerPageFixture }) => {
 
