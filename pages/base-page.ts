@@ -41,4 +41,23 @@ export class BasePage {
             await this.isVisible(item);
         }
     }
+
+    async checkVisibilityOfElementsFirst(selectorList: string[]) {
+        for (const item of selectorList) {
+            await this.isVisibleFirst(item);
+        }
+    }
+
+    async checkVisibilityOfElementsByText(selectorList: string[]) {
+        for (const item of selectorList) {
+            await this.isVisibleGetByText(item);
+        }
+    }
+
+    async checkHiddenElements(selectorList: string[], indexes?: number[]) {
+        const elementsToCheck = indexes ? indexes.map(index => selectorList[index]) : selectorList;
+        for (const item of elementsToCheck) {
+            await this.isHidden(item);
+        }
+    }
 }

@@ -32,7 +32,8 @@ export const test = base.extend<MyFixtures>({
 
     sidebarPageFixture: async ({ page }, use) => {
         const sidebarPageFixture = new SidebarPage(page);
-        await page.goto('/inventory.html');
+        await page.goto('https://www.saucedemo.com/inventory-item.html?id=0');
+        await sidebarPageFixture.clickBurgerMenu();
         await use(sidebarPageFixture);
     },
 

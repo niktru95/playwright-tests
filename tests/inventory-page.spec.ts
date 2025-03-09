@@ -1,21 +1,24 @@
 import { test } from "../fixtures/fixtures";
-import {Selectors} from "../selectors/selectors";
+import {InventorySelectorsArray} from "../selectors/selectors";
+import * as allure from "allure-js-commons";
+
 test.describe('Проверки на главной странице', () => {
 
     test('Проверка наличия данных в карточке товара на главной странице', async ({ inventoryPageFixture }) => {
 
-        await inventoryPageFixture.isVisibleFirst(Selectors.InventoryItemName);
-        await inventoryPageFixture.isVisibleFirst(Selectors.InventoryItemDesc);
-        await inventoryPageFixture.isVisibleFirst(Selectors.InventoryItemPrice);
-        await inventoryPageFixture.isVisibleFirst(Selectors.AddToCartItem);
+        await allure.step('Отображаются данные товара', async ()=> {
+            await inventoryPageFixture.checkVisibilityOfElementsFirst(InventorySelectorsArray);
+        });
     });
 
     test('Переход на страницу товара', async ({ inventoryPageFixture }) => {
 
-        await inventoryPageFixture.clickLinkBackToProducts();
-        await inventoryPageFixture.checkURL('/inventory-item.html?id=4');
-        await inventoryPageFixture.isVisible(Selectors.InventoryItemDesc);
-        await inventoryPageFixture.isVisible(Selectors.InventoryItemPrice);
-        await inventoryPageFixture.isVisible(Selectors.AddToCartApprove);
+        await allure.step('Кликнуть на карточку товара', async ()=> {
+            await inventoryPageFixture.clickLinkBackToProducts();
+        });
+
+        await allure.step('Совершен переход на страницу товаров', async ()=> {
+            await inventoryPageFixture.checkURL('/inventory-item.html?id=4');
+        });
     });
 });

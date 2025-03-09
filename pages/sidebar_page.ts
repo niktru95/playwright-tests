@@ -12,7 +12,7 @@ export class SidebarPage extends BasePage{
         super(page);
         this.burgerMenu = page.getByRole('button', { name: 'Open Menu' });
         this.allItemsItem = page.getByText('All Items');
-        this.aboutItem = page.getByTestId(Selectors.AboutSidebar);
+        this.aboutItem = page.getByTestId(Selectors.AboutSidebarLink);
     };
 
     async clickBurgerMenu () {

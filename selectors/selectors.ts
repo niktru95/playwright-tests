@@ -10,6 +10,33 @@ export const CartSelectorsArray = [
     'total-label',
 ];
 
+export const CartSelectorsArraySecond = [
+    'inventory-item-name',
+    'inventory-item-price',
+    'inventory-item-desc',
+];
+
+export const FooterSelectorsArray = [
+    'social-twitter',
+    'social-facebook',
+    'social-linkedin',
+    'footer-copy',
+];
+
+export const InventorySelectorsArray = [
+    'inventory-item-name',
+    'inventory-item-desc',
+    'inventory-item-price',
+    'add-to-cart-sauce-labs-backpack',
+];
+
+export const SidebarSelectorsArray = [
+    'All Items',
+    'About',
+    'Logout',
+    'Reset App State',
+];
+
 export const Selectors = {
     InventoryItemName: 'inventory-item-name',
     InventoryItemDesc: 'inventory-item-desc',
@@ -31,6 +58,6 @@ export const Selectors = {
     ShoppingCartLink: 'shopping-cart-link',
     AddToCartItem: 'add-to-cart-sauce-labs-backpack',
     AddToCartApprove: 'add-to-cart',
-    AboutSidebar: 'about-sidebar-link',
+    AboutSidebarLink: 'about-sidebar-link',
     Title: 'title',
 } as const;

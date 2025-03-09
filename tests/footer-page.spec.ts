@@ -1,12 +1,15 @@
 import { test } from "../fixtures/fixtures";
 import { FooterCopyTexts} from "../enum/enum";
-import {Selectors} from "../selectors/selectors";
+import {FooterSelectorsArray, Selectors} from "../selectors/selectors";
+import * as allure from "allure-js-commons";
 
 test('Проверка наличия элементов в футере', async ({ footerPageFixture }) => {
 
-    await footerPageFixture.isVisible(Selectors.SocialTwitter);
-    await footerPageFixture.isVisible(Selectors.SocialFacebook);
-    await footerPageFixture.isVisible(Selectors.SocialLinkedin);
-    await footerPageFixture.isVisible(Selectors.FooterCopyText);
-    await footerPageFixture.checkText(Selectors.FooterCopyText, FooterCopyTexts.FooterCopyrightText);
+    await allure.step('В футере отображаются ссылки на социальные сети', async () => {
+        await footerPageFixture.checkVisibilityOfElements(FooterSelectorsArray);
+    });
+
+    await allure.step('В футере отображается текст копирайта', async () => {
+        await footerPageFixture.checkText(Selectors.FooterCopyText, FooterCopyTexts.FooterCopyrightText);
+    });
 });
