@@ -32,7 +32,7 @@ export const test = base.extend<MyFixtures>({
 
     sidebarPageFixture: async ({ page }, use) => {
         const sidebarPageFixture = new SidebarPage(page);
-        await page.goto('/');
+        await page.goto('/inventory.html');
         await use(sidebarPageFixture);
     },
 
@@ -50,7 +50,7 @@ export const test = base.extend<MyFixtures>({
 
     headerPageFixture: async ({ page }, use) => {
         const headerPageFixture = new HeaderPage(page);
-        await page.goto('/');
+        await page.goto('/inventory.html');
         await use(headerPageFixture);
     },
 

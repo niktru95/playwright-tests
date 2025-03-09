@@ -1,6 +1,7 @@
 import { Locator, type Page } from "@playwright/test";
 import {BasePage} from "./base-page";
-import {Selectors} from "../enum/enum";
+import {Selectors} from "../selectors/selectors";
+
 
 export class SidebarPage extends BasePage{
     readonly burgerMenu: Locator;
