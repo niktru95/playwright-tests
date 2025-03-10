@@ -1,5 +1,7 @@
 import { Locator, type Page } from "@playwright/test";
 import {BasePage} from "./base-page";
+import {CartSelectorsArray, Selectors} from "../selectors/selectors";
+import {CartWarnings} from "../enum/enum";
 
 export class CartPage extends BasePage{
     readonly addToCartButton: Locator;
@@ -43,10 +45,10 @@ export class CartPage extends BasePage{
         await this.checkoutButton.click();
     };
 
-    async fillUserInformation (first_name: string, last_name: string, zipcode: string) {
-        await this.firstName.fill(first_name);
-        await this.lastName.fill(last_name);
-        await this.zipcode.fill(zipcode);
+    async fillUserInformation () {
+        await this.firstName.fill(process.env.FIRST_NAME);
+        await this.lastName.fill(process.env.LAST_NAME);
+        await this.zipcode.fill(process.env.ZIPCODE);
     };
 
     async clickContinueButton () {
@@ -59,5 +61,16 @@ export class CartPage extends BasePage{
 
     async clickBackToProductsButton () {
         await this.backToProductsButton.click();
+    };
+
+    async checkApprovedOrder () {
+        await this.checkURL('/checkout-step-two.html');
+        await this.checkText(Selectors.ItemQuantity, '1');
+        await this.checkVisibilityOfElements(CartSelectorsArray);
+    };
+
+    async checkApproveText () {
+        await this.checkText(Selectors.TextHeader, CartWarnings.CompleteHeaderText);
+        await this.checkText(Selectors.TextComplete, CartWarnings.CompleteOrderText);
     };
 }
