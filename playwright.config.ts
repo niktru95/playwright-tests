@@ -23,17 +23,30 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [["line"], 
-  [
-    "allure-playwright",
-    {
-      detail: false,
-      suiteTitle: true
-    }]],
+  reporter: [["line"],
+    [
+      'playwright-qase-reporter',
+      {
+        testops: {
+          api: {
+            token: 'f1abf26094238517211f6103daefd297416512b75b44c8e4a22a4ad187722382',
+          },
+          project: 'PP',
+          uploadAttachments: true,
+          run: {
+            complete: true,
+            title: 'Smoke',
+            description: 'Smoke tests',
+
+          },
+        },
+      },
+    ],],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://www.saucedemo.com',
+    screenshot: 'only-on-failure',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',

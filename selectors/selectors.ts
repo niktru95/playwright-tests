@@ -10,12 +10,6 @@ export const CartSelectorsArray = [
     'total-label',
 ];
 
-export const CartSelectorsArraySecond = [
-    'inventory-item-name',
-    'inventory-item-price',
-    'inventory-item-desc',
-];
-
 export const FooterSelectorsArray = [
     'social-twitter',
     'social-facebook',

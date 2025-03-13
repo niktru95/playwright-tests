@@ -1,5 +1,6 @@
 import { type Locator, type Page, BrowserContext } from '@playwright/test';
 import {BasePage} from "./base-page";
+import {LoginPageWarnings} from "../enum/enum";
 
 export class LoginPage extends BasePage{
   readonly loginForm: Locator;
@@ -22,7 +23,12 @@ export class LoginPage extends BasePage{
     await this.passForm.fill(pass);
   }
 
-  async click_login_button() {
+  async clickLoginButton() {
     await this.loginForm.click();
+  }
+
+  async incorrectLoginPassNotify() {
+    await this.isVisible('error');
+    await this.checkText('error', LoginPageWarnings.LoginError);
   }
 }

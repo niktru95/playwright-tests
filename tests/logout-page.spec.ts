@@ -1,19 +1,22 @@
 import { test } from "../fixtures/fixtures";
-import * as allure from "allure-js-commons";
 
-test('Выход из аккаунта пользователя', async ({ logoutPageFixture }) => {
+test.describe('Проверка логаута', ()=> {
 
-    await allure.step('Кликнуть на боковое меню', async ()=> {
-        await logoutPageFixture.clickBurgerMenu();
+    test('Выход из аккаунта пользователя', async ({ logoutPageFixture }) => {
+
+        await test.step('Кликнуть на боковое меню', async ()=> {
+            await logoutPageFixture.clickBurgerMenu();
+        });
+
+        await test.step('Кликнуть на кнопку "Logout"', async ()=> {
+            await logoutPageFixture.clickLogoutButton();
+        });
+
+        await test.step('Совершен переход на страницу авторизации', async ()=> {
+            await logoutPageFixture.checkURL('/');
+            await logoutPageFixture.isVisible('login-button');
+        });
     });
 
-    await allure.step('Кликнуть на кнопку "Logout"', async ()=> {
-        await logoutPageFixture.clickLogoutButton();
-    });
-
-    await allure.step('Совершен переход на страницу авторизации', async ()=> {
-        await logoutPageFixture.checkURL('/');
-        await logoutPageFixture.isVisible('login-button');
-    });
 });
 
