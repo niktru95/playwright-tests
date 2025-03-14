@@ -40,5 +40,4 @@ Temporary Items
 /.idea/vcs.xml
 /.idea/workspace.xml
 /playwright/
-/.idea/
-/env/
+/.idea/!/env/.env
