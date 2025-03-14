@@ -4,6 +4,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /allure-results/
+/env
 ### macOS ###
 # General
 .DS_Store
@@ -40,4 +41,3 @@ Temporary Items
 /.idea/vcs.xml
 /.idea/workspace.xml
 /playwright/
-/.idea/!/env/.env
