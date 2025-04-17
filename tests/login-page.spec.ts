@@ -6,7 +6,6 @@ test.describe('Проверка авторизации', () => {
 
   test('После авторизации должен быть совершен переход на страницу товаров', async ({ loginPageFixture }) => {
     await loginPageFixture.performLogin(process.env.LOGIN, process.env.PASSWORD)
-
     await test.step('Произошел переход на главную страницу', async () => {
       await loginPageFixture.checkURL('/inventory.html');
     });

@@ -32,26 +32,26 @@ export const test = base.extend<MyFixtures>({
 
     sidebarPageFixture: async ({ page }, use) => {
         const sidebarPageFixture = new SidebarPage(page);
-        await page.goto('https://www.saucedemo.com/inventory-item.html?id=0');
+        await sidebarPageFixture.goTo('https://www.saucedemo.com/inventory-item.html?id=0');
         await sidebarPageFixture.clickBurgerMenu();
         await use(sidebarPageFixture);
     },
 
     inventoryPageFixture: async ({ page }, use) => {
         const inventoryPageFixture = new InventoryPage(page);
-        await page.goto('/inventory.html');
+        await inventoryPageFixture.goTo('/inventory.html');
         await use(inventoryPageFixture);
     },
 
     loginPageFixture: async ({ page }, use) => {
         const loginPageFixture = new LoginPage(page);
-        await page.goto('/');
+        await loginPageFixture.goTo('/');
         await use(loginPageFixture);
     },
 
     headerPageFixture: async ({ page }, use) => {
         const headerPageFixture = new HeaderPage(page);
-        await page.goto('/inventory.html');
+        await headerPageFixture.goTo('/inventory.html');
         await use(headerPageFixture);
     },
 

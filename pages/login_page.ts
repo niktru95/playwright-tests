@@ -3,6 +3,7 @@ import {BasePage} from "./base-page";
 import {LoginPageWarnings} from "../enum/enum";
 import {test} from "../fixtures/fixtures";
 
+
 export class LoginPage extends BasePage{
   readonly loginForm: Locator;
   readonly passForm: Locator;

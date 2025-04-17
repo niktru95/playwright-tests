@@ -3,7 +3,7 @@ import { FooterCopyTexts} from "../enum/enum";
 import {FooterSelectorsArray, Selectors} from "../selectors/selectors";
 
 
-test.describe('Проверка футера', ()=>{
+test.describe('Проверка футера', () => {
 
     test('Проверка наличия элементов в футере', async ({ footerPageFixture }) => {
 

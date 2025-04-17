@@ -2,6 +2,7 @@ import { Locator, type Page } from "@playwright/test";
 import {BasePage} from "./base-page";
 import {CartSelectorsArray, Selectors} from "../selectors/selectors";
 import {CartWarnings} from "../enum/enum";
+import { faker } from '@faker-js/faker';
 
 export class CartPage extends BasePage{
     readonly addToCartButton: Locator;
@@ -46,9 +47,9 @@ export class CartPage extends BasePage{
     };
 
     async fillUserInformation () {
-        await this.firstName.fill(process.env.FIRST_NAME);
-        await this.lastName.fill(process.env.LAST_NAME);
-        await this.zipcode.fill(process.env.ZIPCODE);
+        await this.firstName.fill(faker.person.firstName());
+        await this.lastName.fill(faker.person.lastName());
+        await this.zipcode.fill(faker.location.zipCode('######'));
     };
 
     async clickContinueButton () {
