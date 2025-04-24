@@ -1,29 +1,28 @@
-import { Locator, type Page } from "@playwright/test";
-import {BasePage} from "./base-page";
-import {Selectors} from "../selectors/selectors";
+import { Locator, type Page } from '@playwright/test';
+import { BasePage } from './base-page';
+import { Selectors } from '../selectors/selectors';
 
+export class SidebarPage extends BasePage {
+  readonly burgerMenu: Locator;
+  readonly allItemsItem: Locator;
+  readonly aboutItem: Locator;
 
-export class SidebarPage extends BasePage{
-    readonly burgerMenu: Locator;
-    readonly allItemsItem: Locator;
-    readonly aboutItem: Locator;
+  constructor(page: Page) {
+    super(page);
+    this.burgerMenu = page.getByRole('button', { name: 'Open Menu' });
+    this.allItemsItem = page.getByText('All Items');
+    this.aboutItem = page.getByTestId(Selectors.AboutSidebarLink);
+  }
 
-    constructor(page: Page) {
-        super(page);
-        this.burgerMenu = page.getByRole('button', { name: 'Open Menu' });
-        this.allItemsItem = page.getByText('All Items');
-        this.aboutItem = page.getByTestId(Selectors.AboutSidebarLink);
-    };
+  async clickBurgerMenu(): Promise<void> {
+    await this.burgerMenu.click();
+  }
 
-    async clickBurgerMenu () {
-        await this.burgerMenu.click();
-    };
+  async clickAllItems(): Promise<void> {
+    await this.allItemsItem.click();
+  }
 
-    async clickAllItems () {
-        await this.allItemsItem.click();
-    };
-
-    async clickAboutItem () {
-        await this.aboutItem.click();
-    }
+  async clickAboutItem(): Promise<void> {
+    await this.aboutItem.click();
+  }
 }

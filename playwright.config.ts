@@ -23,7 +23,8 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [["line"],
+  reporter: [
+    ['line'],
     [
       'playwright-qase-reporter',
       {
@@ -50,14 +51,14 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    testIdAttribute: 'data-test'
+    testIdAttribute: 'data-test',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'setup',
-      testMatch: /.*\.setup\.ts/
+      testMatch: /.*\.setup\.ts/,
     },
 
     {

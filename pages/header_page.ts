@@ -1,8 +1,8 @@
-import { Page } from "@playwright/test";
-import {BasePage} from "./base-page";
+import { Page } from '@playwright/test';
+import { BasePage } from './base-page';
 
-export class HeaderPage extends BasePage{
-    constructor(page: Page) {
-        super(page);
-    }
+export class HeaderPage extends BasePage {
+  constructor(page: Page) {
+    super(page);
+  }
 }
