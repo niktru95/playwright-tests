@@ -63,4 +63,10 @@ export class BasePage {
       await this.isHidden(item);
     }
   }
+
+  // Исправленная функция без ошибок линтера
+  async testLinterError(): Promise<void> {
+    const message = 'this is now used';
+    await this.checkText('test', message);
+  }
 }
