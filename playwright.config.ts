@@ -30,7 +30,7 @@ export default defineConfig({
       {
         testops: {
           api: {
-            token: 'f1abf26094238517211f6103daefd297416512b75b44c8e4a22a4ad187722382',
+            token: process.env.QASE_API_TOKEN,
           },
           project: 'PP',
           uploadAttachments: true,

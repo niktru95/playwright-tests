@@ -1,9 +1,6 @@
 import { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 
-/**
- * Base page class with common methods for all pages
- */
 export class BasePage {
   readonly page: Page;
 
