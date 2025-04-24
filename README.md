@@ -6,7 +6,8 @@ This project uses environment variables for configuration. To set up your enviro
 
 1. Create a `.env` file in the root directory of the project
 2. Add the following variables:
-   ```
+
+   ```env
    QASE_API_TOKEN=your_api_token_here
    ```
 
