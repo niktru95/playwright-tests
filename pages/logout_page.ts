@@ -1,14 +1,13 @@
 import { Locator, type Page } from '@playwright/test';
 import { BasePage } from './base-page';
+import { Selectors } from '../selectors/selectors';
 
 export class LogoutPage extends BasePage {
   readonly burger: Locator;
-  readonly logoutButton: Locator;
 
   constructor(page: Page) {
     super(page);
     this.burger = page.getByRole('button', { name: 'Open Menu' });
-    this.logoutButton = page.getByTestId('logout-sidebar-link');
   }
 
   async clickBurgerMenu(): Promise<void> {
@@ -16,6 +15,6 @@ export class LogoutPage extends BasePage {
   }
 
   async clickLogoutButton(): Promise<void> {
-    await this.logoutButton.click();
+    await this.clickElement(Selectors.LogoutButton);
   }
 }

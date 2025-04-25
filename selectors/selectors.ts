@@ -48,5 +48,11 @@ export const Selectors = {
   AddToCartItem: 'add-to-cart-sauce-labs-backpack',
   AddToCartApprove: 'add-to-cart',
   AboutSidebarLink: 'about-sidebar-link',
+  RemoveSauceLabsBackpack: 'remove-sauce-labs-backpack',
+  CheckoutButton: 'checkout',
+  ContinueButton: 'continue',
+  FinishButton: 'finish',
+  BackToProductsButton: 'back-to-products',
+  LogoutButton: 'logout-sidebar-link',
   Title: 'title',
 } as const;

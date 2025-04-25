@@ -5,13 +5,11 @@ import { Selectors } from '../selectors/selectors';
 export class SidebarPage extends BasePage {
   readonly burgerMenu: Locator;
   readonly allItemsItem: Locator;
-  readonly aboutItem: Locator;
 
   constructor(page: Page) {
     super(page);
     this.burgerMenu = page.getByRole('button', { name: 'Open Menu' });
     this.allItemsItem = page.getByText('All Items');
-    this.aboutItem = page.getByTestId(Selectors.AboutSidebarLink);
   }
 
   async clickBurgerMenu(): Promise<void> {
@@ -23,6 +21,6 @@ export class SidebarPage extends BasePage {
   }
 
   async clickAboutItem(): Promise<void> {
-    await this.aboutItem.click();
+    await this.clickElement(Selectors.AboutSidebarLink);
   }
 }

@@ -6,6 +6,7 @@ import { LoginPage } from '../pages/login_page';
 import { HeaderPage } from '../pages/header_page';
 import { FooterPage } from '../pages/footer_page';
 import { LogoutPage } from '../pages/logout_page';
+import { Selectors } from '../selectors/selectors';
 
 type MyFixtures = {
   cartPageFixture: CartPage;
@@ -21,11 +22,11 @@ export const test = base.extend<MyFixtures>({
   cartPageFixture: async ({ page }, use) => {
     const cartPageFixture = new CartPage(page);
     await cartPageFixture.goTo('/inventory.html');
-    await cartPageFixture.clickAddToCartButton();
-    await cartPageFixture.clickShopCartLink();
-    await cartPageFixture.checkText('item-quantity', '1');
-    await cartPageFixture.isVisible('inventory-item-name');
-    await cartPageFixture.isVisible('inventory-item-desc');
+    await cartPageFixture.clickElement(Selectors.AddToCartItem);
+    await cartPageFixture.clickElement(Selectors.ShoppingCartLink);
+    await cartPageFixture.checkText(Selectors.ItemQuantity, '1');
+    await cartPageFixture.isVisible(Selectors.InventoryItemName);
+    await cartPageFixture.isVisible(Selectors.InventoryItemDesc);
     await use(cartPageFixture);
   },
 

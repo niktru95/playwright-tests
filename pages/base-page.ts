@@ -60,4 +60,8 @@ export class BasePage {
       await this.isHidden(item);
     }
   }
+
+  async clickElement(selector: string): Promise<void> {
+    await this.page.getByTestId(selector).click();
+  }
 }
