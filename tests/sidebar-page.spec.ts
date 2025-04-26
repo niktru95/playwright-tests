@@ -1,6 +1,6 @@
 // Тест на кнопку Reset App State написан не будет (состояние сайта не меняется)
 import { test } from '../fixtures/fixtures';
-import { SidebarSelectorsArray } from '../selectors/selectors';
+import { Selectors, SidebarSelectorsArray } from '../selectors/selectors';
 
 test.describe('Проверка работы сайдбара', () => {
   test('Проверка наличия элементов в боковом меню', async ({ sidebarPageFixture }) => {
@@ -23,7 +23,7 @@ test.describe('Проверка работы сайдбара', () => {
     sidebarPageFixture,
   }) => {
     await test.step('Кликнуть на пункт "About"', async () => {
-      await sidebarPageFixture.clickAboutItem();
+      await sidebarPageFixture.clickElement(Selectors.AboutSidebarLink);
     });
 
     await test.step('Совершен переход на страницу проекта saucelabs', async () => {

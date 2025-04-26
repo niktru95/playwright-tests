@@ -1,6 +1,5 @@
 import { Locator, type Page } from '@playwright/test';
 import { BasePage } from './base-page';
-import { Selectors } from '../selectors/selectors';
 
 export class SidebarPage extends BasePage {
   readonly burgerMenu: Locator;
@@ -18,9 +17,5 @@ export class SidebarPage extends BasePage {
 
   async clickAllItems(): Promise<void> {
     await this.allItemsItem.click();
-  }
-
-  async clickAboutItem(): Promise<void> {
-    await this.clickElement(Selectors.AboutSidebarLink);
   }
 }

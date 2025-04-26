@@ -19,7 +19,7 @@ export class LoginPage extends BasePage {
     return this.page.context();
   }
 
-  async auth(login: string | undefined, pass: string | undefined): Promise<void> {
+  async auth(login: string | undefined, pass?: string | undefined): Promise<void> {
     if (!login || !pass) {
       throw new Error('Login and password are required!');
     }
