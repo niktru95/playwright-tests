@@ -1,18 +1,85 @@
 # PW.practice
 
-## Environment Variables Setup
+## Описание проекта
 
-This project uses environment variables for configuration. To set up your environment:
+Проект представляет собой автоматизированное тестирование веб-приложения с использованием Playwright. Включает в себя тесты аутентификации и другие функциональные тесты.
 
-1. Create a `.env` file in the root directory of the project
-2. Add the following variables:
+## Технологии
+
+- Playwright
+- TypeScript
+- ESLint + Prettier
+- Husky для pre-commit хуков
+- Qase для интеграции с тест-менеджментом
+- Allure для отчетов
+
+## Установка и запуск
+
+1. Установите зависимости:
+
+```bash
+npm install
+```
+
+2. Настройте переменные окружения:
+
+   - Создайте файл `.env` в корневой директории проекта
+   - Добавьте следующие переменные:
 
    ```env
    QASE_API_TOKEN=your_api_token_here
+   LOGIN=your_login
+   PASSWORD=your_password
    ```
 
-Replace `your_api_token_here` with your actual Qase API token.
+   - Логин, пароль можно взять с главной страницы сайта https://www.saucedemo.com/
 
-**Note**: The `.env` file is already included in `.gitignore` and should not be committed to version control. For reference, you can use the `.env.example` file as a template.
+3. Запуск тестов:
 
-## Project Structure
+```bash
+npm test
+```
+
+## Доступные скрипты
+
+- `npm test` - запуск всех тестов
+- `npm run lint` - проверка кода линтером
+- `npm run lint:fix` - автоматическое исправление проблем линтера
+- `npm run format` - форматирование кода с помощью Prettier
+
+## Структура проекта
+
+```
+├── tests/           # Тесты
+├── pages/           # Page Object модели
+├── fixtures/        # Фикстуры для тестов
+├── selectors/       # Селекторы для элементов
+├── enum/           # Перечисления
+├── env/            # Конфигурация окружения
+└── playwright/     # Конфигурация Playwright
+```
+
+## Интеграция с Qase
+
+Проект интегрирован с Qase для управления тест-кейсами. Для работы с Qase необходимо:
+
+1. Иметь действующий API токен
+2. Настроить переменную окружения `QASE_API_TOKEN`
+
+## Линтинг и форматирование
+
+Проект использует:
+
+- ESLint для проверки кода
+- Prettier для форматирования
+- Husky для автоматической проверки кода перед коммитом
+
+## Отчеты
+
+После выполнения тестов отчеты доступны в:
+
+- `test-results/` - результаты выполнения тестов
+- `playwright-report/` - HTML отчет Playwright
+- Allure отчеты (при включенной конфигурации)
+
+**Примечание**: Файл `.env` включен в `.gitignore` и не должен быть добавлен в систему контроля версий. Для справки можно использовать файл `.env.example` как шаблон.
