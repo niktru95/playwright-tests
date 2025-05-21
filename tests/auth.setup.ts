@@ -8,7 +8,10 @@ const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 setup('Аутентификация', async ({ loginPageFixture }) => {
   qase.ignore();
 
-  await loginPageFixture.auth(process.env.LOGIN, process.env.PASSWORD);
+  await loginPageFixture.authentication(
+    process.env.LOGIN as string,
+    process.env.PASSWORD as string,
+  );
   await loginPageFixture.clickLoginButton();
 
   await loginPageFixture.checkURL('/inventory.html');

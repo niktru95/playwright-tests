@@ -19,10 +19,7 @@ export class LoginPage extends BasePage {
     return this.page.context();
   }
 
-  async auth(login: string | undefined, pass?: string | undefined): Promise<void> {
-    if (!login || !pass) {
-      throw new Error('Login and password are required!');
-    }
+  async authentication(login: string, pass: string): Promise<void> {
     await this.loginButton.fill(login);
     await this.passForm.fill(pass);
   }
@@ -36,9 +33,9 @@ export class LoginPage extends BasePage {
     await this.checkText('error', LoginPageWarnings.LoginError);
   }
 
-  async performLogin(login: string | undefined, password: string | undefined): Promise<void> {
+  async performLogin(login: string, password: string): Promise<void> {
     await test.step('Ввести данные пользователя', async () => {
-      await this.auth(login, password);
+      await this.authentication(login, password);
     });
 
     await test.step('Кликнуть на кнопку авторизации', async () => {
