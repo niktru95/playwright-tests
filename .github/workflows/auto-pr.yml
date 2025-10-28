@@ -18,8 +18,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Check if there are changes
+        id: check_changes
+        run: |
+          git fetch origin main
+          CHANGES=$(git rev-list --count origin/main..dev)
+          echo "changes=$CHANGES" >> $GITHUB_OUTPUT
+          echo "📊 Commits ahead of main: $CHANGES"
+
       - name: Check if PR exists
         id: check_pr
+        if: steps.check_changes.outputs.changes != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -27,7 +36,7 @@ jobs:
           echo "pr_count=$PR_COUNT" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
-        if: steps.check_pr.outputs.pr_count == '0'
+        if: steps.check_changes.outputs.changes != '0' && steps.check_pr.outputs.pr_count == '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
