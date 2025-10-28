@@ -12,14 +12,6 @@ export class BasePage {
     await this.page.goto(url);
   }
 
-  async goToTest(url: string): Promise<void> {
-    await this.page.goto(url);
-  }
-
-  async goToTest2(url: string): Promise<void> {
-    await this.page.goto(url);
-  }
-
   async checkURL(url: string): Promise<void> {
     await expect(this.page).toHaveURL(url);
   }
